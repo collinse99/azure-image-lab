@@ -1,0 +1,23 @@
+name: Packer Lab
+
+# Adds a "Run workflow" button in GitHub.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Confirm runner is working
+        run: |
+          echo "Hello Eric! Your GitHub runner is working."
+          echo "Next we will add Packer template validation."
+          echo "No Azure resources were created."
