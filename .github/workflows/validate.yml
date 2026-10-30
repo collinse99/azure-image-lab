@@ -1,6 +1,5 @@
 name: Packer Lab
 
-# Adds a "Run workflow" button in GitHub.
 on:
   workflow_dispatch:
 
@@ -10,14 +9,25 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Confirm runner is working
-        run: |
-          echo "Hello Eric! Your GitHub runner is working."
-          echo "Next we will add Packer template validation."
-          echo "No Azure resources were created."
+      - name: Install Packer
+        uses: hashicorp/setup-packer@v3
+        with:
+          version: "1.14.0"
+
+      - name: Show Packer version
+        run: packer version
+
+      - name: Install Azure plugin
+        run: packer plugins install github.com/hashicorp/azure
+
+      - name: Check JSON formatting
+        run: python3 -m json.tool packer/rhel8.json
+
+      - name: Check Packer template syntax
+        run: packer validate -syntax-only packer/rhel8.json
