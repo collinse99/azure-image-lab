@@ -24,13 +24,10 @@
     }
   ],
 
-  "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "echo 'Hello Eric! This is the temporary RHEL build VM.'",
-        "cat /etc/redhat-release"
-      ]
-    }
-  ]
+"provisioners": [
+  {
+    "type": "ansible",
+    "playbook_file": "./ansible/baseline.yml"
+  }
+]
 }
