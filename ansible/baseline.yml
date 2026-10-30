@@ -1,0 +1,29 @@
+---
+- name: Configure the RHEL baseline
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install baseline packages
+      ansible.builtin.dnf:
+        name:
+          - curl
+          - unzip
+          - chrony
+        state: present
+
+    - name: Enable time synchronization
+      ansible.builtin.service:
+        name: chronyd
+        enabled: true
+        state: started
+
+    - name: Add an image identification file
+      ansible.builtin.copy:
+        dest: /etc/golden-image-info
+        content: |
+          Image: Eric's RHEL 8 lab
+          Configured with Packer and Ansible
+        owner: root
+        group: root
+        mode: "0644"
