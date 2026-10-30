@@ -25,7 +25,19 @@ jobs:
 
       - name: Install Azure plugin
         run: packer plugins install github.com/hashicorp/azure
+        
+      - name: Install Ansible plugin
+        run: packer plugins install github.com/hashicorp/ansible
 
+      - name: Install Ansible
+        run: |
+          python3 -m venv "$RUNNER_TEMP/ansible-venv"
+          "$RUNNER_TEMP/ansible-venv/bin/pip" install "ansible-core==2.16.14"
+          echo "$RUNNER_TEMP/ansible-venv/bin" >> "$GITHUB_PATH"
+
+      - name: Check Ansible playbook syntax
+        run: ansible-playbook --syntax-check -i localhost, ansible/baseline.yml
+        
       - name: Check JSON formatting
         run: python3 -m json.tool packer/rhel8.json
 
