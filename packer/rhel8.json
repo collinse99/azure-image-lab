@@ -1,0 +1,36 @@
+{
+  "variables": {
+    "location": "eastus",
+    "vm_size": "Standard_B2s",
+    "image_name": "rhel8-golden-lab",
+    "image_resource_group": "rg-image-lab",
+    "rhel_sku": "REPLACE_WITH_RHEL8_SKU"
+  },
+
+  "builders": [
+    {
+      "type": "azure-arm",
+      "os_type": "Linux",
+
+      "location": "{{user `location`}}",
+      "vm_size": "{{user `vm_size`}}",
+
+      "image_publisher": "RedHat",
+      "image_offer": "RHEL",
+      "image_sku": "{{user `rhel_sku`}}",
+
+      "managed_image_name": "{{user `image_name`}}",
+      "managed_image_resource_group_name": "{{user `image_resource_group`}}"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "echo 'Hello Eric! This is the temporary RHEL build VM.'",
+        "cat /etc/redhat-release"
+      ]
+    }
+  ]
+}
