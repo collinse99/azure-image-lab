@@ -43,5 +43,5 @@ jobs:
             --offer RHEL \
             --sku 810-gen2 \
             --all \
-            --query "sort_by(@, &name)[].{Version:name, URN:urn}" \
+            --query "sort_by(@, &version)[].{Version:version, URN:urn}" \
             --output table            
