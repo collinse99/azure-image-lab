@@ -34,3 +34,14 @@ jobs:
             --offer RHEL \
             --query "[?starts_with(name, '8')].name" \
             --output table
+
+      - name: List RHEL 8.10 image versions
+        run: |
+          az vm image list \
+            --location eastus \
+            --publisher RedHat \
+            --offer RHEL \
+            --sku 810-gen2 \
+            --all \
+            --query "sort_by(@, &name)[].{Version:name, URN:urn}" \
+            --output table            
