@@ -62,3 +62,6 @@ jobs:
 
       - name: Check Packer template syntax
         run: packer validate -syntax-only packer/rhel8.json
+
+      - name: Validate Packer template
+        run: packer validate packer/rhel8.json        
