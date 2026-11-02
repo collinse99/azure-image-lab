@@ -1,4 +1,4 @@
-name: Packer Lab
+name: Packer Verify
 
 on:
   workflow_dispatch:
@@ -27,6 +27,8 @@ jobs:
         run: |
           az account show --query "{Subscription:name,State:state}" -o table
           az group show --name rg-image-lab \
+            --query "{ResourceGroup:name,Location:location}" -o table
+          az group show --name rg-image-build \
             --query "{ResourceGroup:name,Location:location}" -o table
             
       - name: Install Packer
