@@ -16,7 +16,7 @@
       "use_azure_cli_auth": true,
       "os_type": "Linux",
 
-      "location": "{{user `location`}}",
+      "build_resource_group_name": "rg-image-build",
       "vm_size": "{{user `vm_size`}}",
 
       "image_publisher": "{{user `image_publisher`}}",
