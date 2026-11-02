@@ -33,6 +33,8 @@
   {
     "type": "ansible",
     "playbook_file": "./ansible/baseline.yml"
+    "sftp_command": "/usr/libexec/openssh/sftp-server -e",
+    "extra_arguments": ["-vvv"]    
   },
   {
     "type": "shell",
