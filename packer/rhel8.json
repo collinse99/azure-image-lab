@@ -36,7 +36,10 @@
     "user": "packer",    
     "playbook_file": "./ansible/baseline.yml",
     "sftp_command": "/usr/libexec/openssh/sftp-server -e",
-    "extra_arguments": ["-vvv"]
+    "extra_arguments": [
+      "-vvv", 
+      "--scp-extra-args=-O"
+    ]
   },
   {
     "type": "shell",
