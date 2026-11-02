@@ -7,7 +7,8 @@
     "image_publisher": "RedHat",
     "image_offer": "RHEL",
     "image_sku": "810-gen2",
-    "image_version": "8.10.2026102317"
+    "image_version": "8.10.2026102317",
+    "ssh_username": "packer",    
   },
 
   "builders": [
@@ -32,9 +33,10 @@
 "provisioners": [
   {
     "type": "ansible",
+    "user": "packer",    
     "playbook_file": "./ansible/baseline.yml",
     "sftp_command": "/usr/libexec/openssh/sftp-server -e",
-    "extra_arguments": ["-vvv"]    
+    "extra_arguments": ["-vvv"]
   },
   {
     "type": "shell",
