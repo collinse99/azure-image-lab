@@ -1,7 +1,7 @@
 {
   "variables": {
     "location": "eastus",
-    "vm_size": "Standard_B2s",
+    "vm_size": "Standard_D2s_v4",
     "image_name": "rhel8-golden-lab",
     "image_resource_group": "rg-image-lab",
     "image_publisher": "RedHat",
