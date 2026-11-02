@@ -8,7 +8,7 @@
     "image_offer": "RHEL",
     "image_sku": "810-gen2",
     "image_version": "8.10.2026102317",
-    "ssh_username": "packer",    
+    "ssh_username": "packer"
   },
 
   "builders": [
