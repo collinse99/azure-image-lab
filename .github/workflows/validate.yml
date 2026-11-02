@@ -30,6 +30,15 @@ jobs:
             --query "{ResourceGroup:name,Location:location}" -o table
           az group show --name rg-image-build \
             --query "{ResourceGroup:name,Location:location}" -o table
+
+      - name: Check alternative build VM sizes
+        run: |
+          az vm list-skus \
+            --location eastus \
+            --resource-type virtualMachines \
+            --all \
+            --query "[?name=='Standard_B2s' || name=='Standard_B2s_v2' || name=='Standard_D2s_v5' || name=='Standard_D2s_v4'].{Size:name,Restrictions:restrictions}" \
+            --output json
             
       - name: Install Packer
         uses: hashicorp/setup-packer@v3
