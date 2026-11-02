@@ -29,10 +29,19 @@
     }
   ],
 
-  "provisioners": [
-    {
-      "type": "ansible",
-      "playbook_file": "./ansible/baseline.yml"
-    }
-  ]
+"provisioners": [
+  {
+    "type": "ansible",
+    "playbook_file": "./ansible/baseline.yml"
+  },
+  {
+    "type": "shell",
+    "inline": [
+      "sudo /usr/sbin/waagent -deprovision+user -force",
+      "export HISTSIZE=0",
+      "sync"
+    ],
+    "inline_shebang": "/bin/sh -e"
+  }
+]
 }
